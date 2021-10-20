@@ -180,7 +180,26 @@
                 "quit"
             ],
             "showDevDebugOutput": false // When set to true, displays output of GDB.
-        }
+        },
+
+        {
+            "name": "Debug cc13x3x7_26x2x7 examples",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}/examples/${input:ccApp}-app/cc13x2x7_26x2x7",
+            "executable": "./out/${input:mbedDebugProfile}/chip-LP_CC2652R7-${input:ccApp}-example.out",
+            "servertype": "openocd",
+            "openocdPath": "${env:OPENOCD_PATH/bin}",
+            "searchDir": [
+                "${env:OPENOCD_PATH/scripts}",
+                "${workspaceRoot}/config/cc13x2_26x2/openocd"
+            ],
+            "configFiles": ["ti_cc26x2x7_launchpad.cfg"],
+            "numberOfProcessors": 1,
+            "targetProcessor": 0,
+            "runToMain": true,
+            "showDevDebugOutput": false
+        },
     ],
     "inputs": [
         {
@@ -201,8 +220,28 @@
             "type": "pickString",
             "id": "mbedApp",
             "description": "What mbed application do you want to use?",
-            "options": ["lock-app", "lighting-app"],
+            "options": [
+                "lock-app",
+                "lighting-app",
+                "pigweed-app",
+                "all-clusters-app",
+                "shell"
+            ],
+            "default": "lock-app"
+        },
+        {
+            "type": "pickString",
+            "id": "mbedTarget",
+            "description": "What mbed target do you want to use?",
+            "options": ["CY8CPROTO_062_4343W"],
+            "default": "CY8CPROTO_062_4343W"
+        },
+        {
+            "type": "pickString",
+            "id": "ccApp",
+            "description": "What TI CC application do you want to use?",
+            "options": ["lock", "pump"],
             "default": "shell"
-        }
+        },
     ]
 }
