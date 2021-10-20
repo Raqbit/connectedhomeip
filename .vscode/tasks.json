@@ -29,10 +29,7 @@
             "label": "Main Build",
             "type": "shell",
             "command": "scripts/build/default.sh",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "isBackground": false,
             "presentation": {
                 "reveal": "always",
@@ -40,7 +37,10 @@
             },
             "problemMatcher": {
                 "base": "$gcc",
-                "fileLocation": ["relative", "${workspaceFolder}/out/default/"]
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/out/default/"
+                ]
             }
         },
         {
@@ -55,7 +55,10 @@
             },
             "problemMatcher": {
                 "base": "$gcc",
-                "fileLocation": ["relative", "${workspaceFolder}/out/debug/"]
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/out/debug/"
+                ]
             }
         },
         {
@@ -78,7 +81,10 @@
             "group": "test",
             "problemMatcher": {
                 "base": "$gcc",
-                "fileLocation": ["relative", "${workspaceFolder}/out/default/"]
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/out/default/"
+                ]
             }
         },
         {
@@ -86,21 +92,27 @@
             "type": "shell",
             "command": "bash scripts/bootstrap.sh",
             "group": "none",
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Clean Output",
             "type": "shell",
             "command": "scripts/helpers/clean.sh",
             "group": "none",
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Clean Tree",
             "type": "shell",
             "command": "scripts/helpers/clean_tree.sh",
             "group": "none",
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Build Minimal MDNS Example",
@@ -170,6 +182,24 @@
                     "${workspaceFolder}/src/test_driver/mbed/build"
                 ]
             }
+        },
+        {
+            "label": "Build cc13x3x7_26x2x7 example",
+            "type": "shell",
+            "command": "../../../scripts/run_in_build_env.sh",
+            "args": [
+                "gn gen out/debug --args=\"ti_simplelink_sdk_root=\\\"${TI_SIMPLELINK_SDK_ROOT}\\\" ti_sysconfig_root=\\\"${TI_SYSCONFIG_ROOT}\\\"\" && ninja -C out/debug"
+            ],
+            "options": {
+                "cwd": "examples/${input:ccApp}/cc13x2x7_26x2x7"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "base": "$gcc"
+            }
         }
     ],
     "inputs": [
@@ -190,6 +220,16 @@
                 "pigweed-app",
                 "all-clusters-app",
                 "shell"
+            ],
+            "default": "lock-app"
+        },
+        {
+            "type": "pickString",
+            "id": "ccApp",
+            "description": "What mbed application do you want to use?",
+            "options": [
+                "lock-app",
+                "pump-app",
             ],
             "default": "lock-app"
         },
