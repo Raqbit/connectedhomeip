@@ -48,6 +48,9 @@ using namespace ::chip::DeviceLayer;
 __attribute__((section(".heap"))) uint8_t GlobalHeapZoneBuffer[TOTAL_ICALL_HEAP_SIZE];
 uint32_t heapSize = TOTAL_ICALL_HEAP_SIZE;
 
+// Symbol required by OpenOCD for FreeRTOS
+static volatile int uxTopUsedPriority;
+
 // ================================================================================
 // FreeRTOS Callbacks
 // ================================================================================
@@ -64,6 +67,9 @@ extern "C" void vApplicationStackOverflowHook(void)
 // ================================================================================
 int main(void)
 {
+    // Prevent removal by compiler
+    uxTopUsedPriority = configMAX_PRIORITIES - 1;
+    
     Board_init();
     bpool((void *) GlobalHeapZoneBuffer, TOTAL_ICALL_HEAP_SIZE);
 
