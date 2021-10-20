@@ -87,7 +87,7 @@ class AndroidBuilder(Builder):
                     'Environment %s missing, cannot build android libraries' % k)
 
         # SDK manager must be runnable to 'accept licenses'
-        sdk_manager = os.path.join(os.environ['ANDROID_HOME'], 'tools', 'bin',
+        sdk_manager = os.path.join(os.environ['ANDROID_HOME'], 'cmdline-tools', 'latest', 'bin',
                                    'sdkmanager')
         if not (os.path.isfile(sdk_manager) and os.access(sdk_manager, os.X_OK)):
             raise Exception("'%s' is not executable by the current user" %
@@ -146,7 +146,7 @@ class AndroidBuilder(Builder):
 
             self._Execute([
                 'bash', '-c',
-                'yes | %s/tools/bin/sdkmanager --licenses >/dev/null' %
+                'yes | %s/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null' %
                 os.environ['ANDROID_HOME']
             ],
                 title='Accepting NDK licenses')
