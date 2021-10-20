@@ -149,6 +149,11 @@
 #define CHIP_DEVICE_CONFIG_ENABLE_THREAD_SRP_CLIENT 1
 
 /**
+ * Airios change: limit max device admins to limit memory usage
+ */
+#define CHIP_CONFIG_MAX_DEVICE_ADMINS 5
+
+/**
  * CHIP_CONFIG_EVENT_LOGGING_DEFAULT_IMPORTANCE
  *
  * For a development build, set the default importance of events to be logged as Debug.
