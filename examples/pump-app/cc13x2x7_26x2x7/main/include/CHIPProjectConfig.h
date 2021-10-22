@@ -121,6 +121,12 @@
 #define CHIP_DEVICE_CONFIG_SED_FAST_POLLING_INTERVAL 5000_ms32
 
 /**
+ * Airios change: limit max srp services to be the amount of admins plus 1
+ * to make sure that all operational services and a commissionable node serice can be advertised.
+ */
+#define CHIP_DEVICE_CONFIG_THREAD_SRP_MAX_SERVICES (CHIP_CONFIG_MAX_DEVICE_ADMINS + 1)
+
+/**
  * CHIP_CONFIG_EVENT_LOGGING_DEFAULT_IMPORTANCE
  *
  * For a development build, set the default importance of events to be logged as Debug.
