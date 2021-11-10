@@ -22,6 +22,7 @@
 #include "AppEvent.h"
 #include <app/server/Server.h>
 
+#include <bget.h>
 #include "FreeRTOS.h"
 
 #include <credentials/DeviceAttestationCredsProvider.h>
@@ -293,6 +294,7 @@ void AppTask::DispatchEvent(AppEvent * aEvent)
     case AppEvent::kEventType_ButtonLeft:
         if (AppEvent::kAppEventButtonType_Clicked == aEvent->ButtonEvent.Type)
         {
+            PrintMemoryDebug();
             if (!BoltLockMgr().IsUnlocked())
             {
                 BoltLockMgr().InitiateAction(0, BoltLockManager::UNLOCK_ACTION);
@@ -345,4 +347,16 @@ void AppTask::DispatchEvent(AppEvent * aEvent)
     default:
         break;
     }
+}
+
+void AppTask::PrintMemoryDebug() {
+    long curalloc, totfree, maxfree, nget, nrel;
+    bstats(&curalloc, &totfree, &maxfree, &nget, &nrel);
+
+    PLAT_LOG("MEMINFO:\r\n"
+             "\tAllocated: %d bytes,\r\n"
+             "\tFree: %d bytes,\r\n"
+             "\tLargest free block: %d bytes,\r\n"
+             "\t# alloc's: %d,\r\n"
+             "\t# free's: %d", curalloc, totfree, maxfree, nget, nrel);
 }
