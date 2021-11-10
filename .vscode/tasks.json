@@ -199,6 +199,27 @@
             "problemMatcher": {
                 "base": "$gcc"
             }
+        },
+        {
+            "label": "Factory reset cc13x3x7_26x2x7 NVM",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-s",
+                "${workspaceRoot}/config/cc13x2_26x2/openocd",
+                "-f",
+                "ti_cc26x2x7_launchpad.cfg",
+                "-c",
+                "init",
+                "-c",
+                "halt",
+                "-c",
+                "\"flash erase_sector 0 74 75\"",
+                "-c",
+                "\"reset run\"",
+                "-c",
+                "shutdown"
+            ],
         }
     ],
     "inputs": [
