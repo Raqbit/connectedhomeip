@@ -31,7 +31,10 @@ ti_simplelink_sdk("sdk") {
 
   defines = []
   if (is_debug) {
-    defines += [ "BUILD_RELEASE=0" ]
+    defines += [
+      "BUILD_RELEASE=0",
+      "INCLUDE_BGET_STATS=1",
+    ]
   } else {
     defines += [ "BUILD_RELEASE=1" ]
   }
