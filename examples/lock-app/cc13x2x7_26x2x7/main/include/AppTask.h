@@ -55,6 +55,8 @@ private:
     static void ButtonRightEventHandler(Button_Handle handle, Button_EventMask events);
     static void TimerEventHandler(void * p_context);
 
+    static void PrintMemoryDebug();
+
     enum Function_t
     {
         kFunction_NoneSelected   = 0,
