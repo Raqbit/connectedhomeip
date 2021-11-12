@@ -15,6 +15,7 @@
 import os
 
 from builders.android import AndroidBoard, AndroidApp, AndroidBuilder
+from builders.cc13x2x7_26x2x7 import TIBuilder, TIApp, TIBoard
 from builders.efr32 import Efr32Builder, Efr32App, Efr32Board
 from builders.esp32 import Esp32Builder, Esp32Board, Esp32App
 from builders.host import HostBuilder, HostApp, HostBoard
@@ -229,6 +230,18 @@ def InfineonTargets():
     yield target.Extend('p6-all-clusters', board=InfineonBoard.P6BOARD, app=InfineonApp.ALL_CLUSTERS)
 
 
+def TITargets():
+    target = Target('cc13x2x7_26x2x7', TIBuilder)
+
+    boards = [
+        target.Extend('LP_CC2652R7', board=TIBoard.LP_CC2652R7),
+    ]
+
+    for board in boards:
+        yield board.Extend('lock', app=TIApp.LOCK)
+        yield board.Extend('pump', app=TIApp.PUMP)
+
+
 ALL = []
 
 target_generators = [
@@ -238,8 +251,8 @@ target_generators = [
     NrfTargets(),
     AndroidTargets(),
     MbedTargets(),
-    InfineonTargets()
-
+    InfineonTargets(),
+    TITargets(),
 ]
 
 for generator in target_generators:
