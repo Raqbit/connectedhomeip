@@ -40,3 +40,8 @@ mv "$CHIP_ROOT/out/debug/compile_commands.json" "$CHIP_ROOT/out/debug/compile_co
 
 gn --root="$CHIP_ROOT" gen "$CHIP_ROOT/out/debug" --export-compile-commands=efr32_lock_app
 mv "$CHIP_ROOT/out/debug/compile_commands.json" "$CHIP_ROOT/out/debug/compile_commands.efr32.json"
+
+# Change to generate lock-app compile commands
+gn --root="$CHIP_ROOT/examples/lock-app/cc13x2x7_26x2x7" gen "$CHIP_ROOT/out/cc13x2x7_26x2x7-LP_CC2652R7-lock" --export-compile-commands
+# CLion does not like having the compile_commands reference the symlink, so replace it with a direct reference to the files
+sed -i -e 's:../../examples/lock-app/cc13x2x7_26x2x7/third_party/connectedhomeip/:../../:g' "$CHIP_ROOT/out/cc13x2x7_26x2x7-LP_CC2652R7-lock/compile_commands.json"
