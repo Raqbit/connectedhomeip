@@ -21,12 +21,15 @@ from .gn import GnBuilder
 class TIApp(Enum):
     LOCK = auto()
     PUMP = auto()
+    THERMOSTAT = auto()
 
     def ExampleName(self):
         if self == TIApp.LOCK:
             return 'lock-app'
         elif self == TIApp.PUMP:
             return 'pump-app'
+        elif self == TIApp.THERMOSTAT:
+            return 'thermostat'
         else:
             raise Exception('Unknown app type: {}'.format(self))
 
@@ -35,6 +38,8 @@ class TIApp(Enum):
             return 'lock-example'
         elif self == TIApp.PUMP:
             return 'pump-example'
+        elif self == TIApp.THERMOSTAT:
+            return 'thermostat-example'
         else:
             raise Exception('Unknown app type: {}'.format(self))
 

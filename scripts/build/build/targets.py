@@ -345,6 +345,7 @@ def TITargets():
     for board in boards:
         yield board.Extend('lock', app=TIApp.LOCK)
         yield board.Extend('pump', app=TIApp.PUMP)
+        yield board.Extend('thermostat', app=TIApp.THERMOSTAT)
 
 ALL = []
 
