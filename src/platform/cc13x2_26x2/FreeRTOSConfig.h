@@ -95,7 +95,12 @@
         for (;;)                                                                                                                   \
             ;                                                                                                                      \
     }
+
+#if BUILD_RELEASE
 #define configQUEUE_REGISTRY_SIZE 0
+#else
+#define configQUEUE_REGISTRY_SIZE 10
+#endif
 
 /* Minimum FreeRTOS tick periods of idle before invoking Power policy */
 /* TODO: find way to reduce this; FreeRTOS requires it to be 2 or more */
