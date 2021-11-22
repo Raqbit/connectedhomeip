@@ -245,7 +245,8 @@ void AppTask::DispatchEvent(AppEvent * aEvent)
    case AppEvent::kEventType_ButtonLeft:
        if (AppEvent::kAppEventButtonType_Clicked == aEvent->ButtonEvent.Type)
        {
-           // Do nothing yet
+           LED_setOn(sAppGreenHandle, 0xff);
+           ConfigurationMgr().InitiateFactoryReset();
        }
        else if (AppEvent::kAppEventButtonType_LongClicked == aEvent->ButtonEvent.Type)
        {
