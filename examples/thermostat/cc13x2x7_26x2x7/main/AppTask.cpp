@@ -182,10 +182,11 @@ void AppTask::AppTaskMain(void * pvParameter)
    while (1)
    {
        /* Task pend until we have stuff to do */
-       if (xQueueReceive(sAppEventQueue, &event, portMAX_DELAY) == pdTRUE)
+       if (xQueueReceive(sAppEventQueue, &event, pdMS_TO_TICKS(1000)) == pdTRUE)
        {
            sAppTask.DispatchEvent(&event);
        }
+       LED_toggle(sAppRedHandle);
    }
 }
 
