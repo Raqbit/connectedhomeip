@@ -35,7 +35,7 @@
 #include <ti/drivers/SHA2.h>
 
 #include <bget.h>
-#define TOTAL_ICALL_HEAP_SIZE (0xc000)
+#define TOTAL_ICALL_HEAP_SIZE (0xE000)
 
 __attribute__((section(".heap"))) uint8_t GlobalHeapZoneBuffer[TOTAL_ICALL_HEAP_SIZE];
 uint32_t heapSize = TOTAL_ICALL_HEAP_SIZE;
