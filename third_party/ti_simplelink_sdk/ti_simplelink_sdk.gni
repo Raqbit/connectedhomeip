@@ -290,13 +290,13 @@ template("ti_simplelink_sdk") {
       "${chip_root}/third_party/openthread/repo:openthread_config",
     ]
 
-    if (ti_simplelink_device_family == "cc13x2_26x2") {
-      public_configs +=
-          [ "${chip_root}/third_party/openthread/repo:openthread_mtd_config" ]
-    } else if (ti_simplelink_device_family == "cc13x2x7_26x2x7") {
-      public_configs +=
-          [ "${chip_root}/third_party/openthread/repo:openthread_ftd_config" ]
-    }
+#    if (ti_simplelink_device_family == "cc13x2_26x2") {
+#      public_configs +=
+#          [ "${chip_root}/third_party/openthread/repo:openthread_mtd_config" ]
+#    } else if (ti_simplelink_device_family == "cc13x2x7_26x2x7") {
+#      public_configs +=gn
+#          [ "${chip_root}/third_party/openthread/repo:openthread_ftd_config" ]
+#    }
   }
 
   config("${sdk_target_name}_dmm_config") {
