@@ -136,6 +136,9 @@ int AppTask::Init()
     // Initialize device attestation config
     SetDeviceAttestationCredentialsProvider(Examples::GetExampleDACProvider());
 
+    // Start BLE advertising
+    chip::Server::GetInstance().GetCommissioningWindowManager().OpenBasicCommissioningWindow();
+
     // Initialize LEDs
     PLAT_LOG("Initialize LEDs");
     LED_init();
